@@ -1,9 +1,5 @@
 const todoState = [
-  {
-    text: 'Use Redux',
-    completed: false,
-    id: -1
-  }
+
 ];
 
 export default function todos(state = todoState, action) {

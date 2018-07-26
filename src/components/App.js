@@ -4,8 +4,8 @@ import UserList from '../containers/userList';
 
 const App = () => (
   <div>
-    <TodoList />
     <UserList />
+    <TodoList />
   </div>
 );
 
