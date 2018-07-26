@@ -1,15 +1,20 @@
-import { connect } from "react-redux";
-import Todo from "../components/Todo";
-import {addTodo} from "../actions/index";
+import { connect } from 'react-redux';
+import Todo from '../components/Todo';
+import { addTodo, toogleTodo } from '../actions/index';
 
 const mapStateToProps = state => {
-    return {
-        todoList: state.todoList
-    };
+  console.log('===', state.todoList);
+  return {
+    todoList: state.todoList
+  };
 };
 
-const mapDispatchToProps =  {
-    addTodo
-}
+const mapDispatchToProps = {
+  addTodo,
+  toogleTodo
+};
 
-export default connect(mapStateToProps,mapDispatchToProps)(Todo)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Todo);
