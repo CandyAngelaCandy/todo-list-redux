@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Todo from '../components/Todo';
-import { addTodo, toogleTodo, filterTodo } from '../actions/index';
+import { addTodo, toogleTodo, filterTodo, editTodo,updateTodo } from '../actions/index';
 
 const mapStateToProps = state => {
   console.log('===', state.todoList);
@@ -12,7 +12,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   addTodo,
   toogleTodo,
-  filterTodo
+  filterTodo,
+  editTodo,
+    updateTodo
 };
 
 export default connect(

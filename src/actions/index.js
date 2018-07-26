@@ -11,7 +11,7 @@ export const addTodo = text => {
       id: uuid(),
       completed: false,
       editable: false,
-      visible:true
+      visible: true
     }
   };
 };
@@ -23,9 +23,24 @@ export const toogleTodo = todoItem => {
   };
 };
 
-export const filterTodo = (filterValue) => {
+export const filterTodo = filterValue => {
+  return {
+    type: 'FILTER_TODO',
+    filterValue
+  };
+};
+
+export const editTodo = (todoItem) => {
+  return {
+    type: 'EDIT_TODO',
+    payload: todoItem,
+  };
+};
+
+export const updateTodo = (todoItem,todoContent) => {
     return {
-        type:'FILTER_TODO',
-        filterValue
-    }
-}
+        type: 'UPDATE_TODO',
+        payload: todoItem,
+        todoContent:todoContent
+    };
+};

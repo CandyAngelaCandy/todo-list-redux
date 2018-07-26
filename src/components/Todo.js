@@ -6,11 +6,15 @@ class Todo extends PureComponent {
       <div>
         <div className="header">
           <h1>todos</h1>
-          <input type="text" ref={el => {
+          <input
+            type="text"
+            ref={el => {
               this.filterInput = el;
-          }} onBlur={() => {
-              this.props.filterTodo(this.filterInput.value)
-          }}/>
+            }}
+            onBlur={() => {
+              this.props.filterTodo(this.filterInput.value);
+            }}
+          />
           <input
             type="text"
             ref={el => {
@@ -40,7 +44,22 @@ class Todo extends PureComponent {
                     <span>{todoItem.text}</span>
                   </del>
                 ) : (
-                  <span>{todoItem.text}</span>
+                  <span
+                    contentEditable={todoItem.editable}
+                    onDoubleClick={() => {
+                      this.props.editTodo(todoItem);
+                    }}
+                    onBlur={
+                        () => {
+                            this.props.updateTodo(todoItem,this.todoContent.innerText);
+                        }
+                    }
+                    ref={el => {
+                        this.todoContent = el;
+                    }}
+                  >
+                    {todoItem.text}
+                  </span>
                 )}
               </li>
             );
