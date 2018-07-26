@@ -57,6 +57,9 @@ class Todo extends PureComponent {
                     ref={el => {
                         this.todoContent = el;
                     }}
+                    onClick={(e) => {
+                        this.props.changeRouter();
+                    }}
                   >
                     {todoItem.text}
                   </span>

@@ -49,6 +49,10 @@ export default function todos(state = todoState, action) {
           return newState3;
           break;
 
+      case "CHANGE_ROUTER":
+          window.location = '/detail'
+          break;
+
     default:
       return state;
   }

@@ -11,7 +11,8 @@ export const addTodo = text => {
       id: uuid(),
       completed: false,
       editable: false,
-      visible: true
+      visible: true,
+      routerUrl:"./"
     }
   };
 };
@@ -44,3 +45,11 @@ export const updateTodo = (todoItem,todoContent) => {
         todoContent:todoContent
     };
 };
+
+export const changeRouter = (targetVal) =>{
+   return{
+     type:'CHANGE_ROUTER',
+     routerUrl:"./about",
+     targetVal:targetVal
+   }
+}
