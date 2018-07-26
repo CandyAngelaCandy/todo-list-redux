@@ -6,7 +6,11 @@ class Todo extends PureComponent {
       <div>
         <div className="header">
           <h1>todos</h1>
-          <input type="text"/>
+          <input type="text" ref={el => {
+              this.filterInput = el;
+          }} onBlur={() => {
+              this.props.filterTodo(this.filterInput.value)
+          }}/>
           <input
             type="text"
             ref={el => {

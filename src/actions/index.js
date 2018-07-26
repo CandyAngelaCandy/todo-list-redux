@@ -10,7 +10,8 @@ export const addTodo = text => {
       text: text,
       id: uuid(),
       completed: false,
-      editable: false
+      editable: false,
+      visible:true
     }
   };
 };
@@ -21,3 +22,10 @@ export const toogleTodo = todoItem => {
     payload: todoItem
   };
 };
+
+export const filterTodo = (filterValue) => {
+    return {
+        type:'FILTER_TODO',
+        filterValue
+    }
+}

@@ -19,6 +19,18 @@ export default function todos(state = todoState, action) {
       });
       todo.completed = !todo.completed;
       return newState;
+      break;
+
+    case 'FILTER_TODO':
+       // debugger;
+       const newState1 = [...state];
+
+       const filterState = newState1.filter(item => {
+           return item.text === action.filterValue;
+       })
+
+       return filterState;
+       break;
 
     default:
       return state;
