@@ -3,9 +3,13 @@ import React, { Component } from 'react';
 class TodoDetailer extends Component {
 
     render() {
+        console.log(this.props.todoList);
         return (
             <div>
-                <span>{this.props.todoDetailer["text"]}</span>
+                {console.log(this.props.todoList)}
+                <div>detail todo</div>
+                <span>{this.props.todoList[0]["text"]+"    "}</span>
+                <span>{this.props.todoList[0]["time"]}</span>
             </div>
         );
     }

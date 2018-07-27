@@ -1,4 +1,9 @@
 import React, { PureComponent } from 'react';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom'
 
 class Todo extends PureComponent {
   render() {
@@ -14,6 +19,8 @@ class Todo extends PureComponent {
             onBlur={() => {
               this.props.filterTodo(this.filterInput.value);
             }}
+
+            placeholder="filter todo item"
           />
           <input
             type="text"
@@ -57,8 +64,8 @@ class Todo extends PureComponent {
                     ref={el => {
                         this.todoContent = el;
                     }}
-                    onClick={(e) => {
-                        this.props.changeRouter();
+                    onClick={() => {
+                        this.props.changeRouter(todoItem);
                     }}
                   >
                     {todoItem.text}

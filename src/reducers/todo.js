@@ -1,5 +1,12 @@
 const todoState = [
-
+    {
+        text: "123456",
+        time:"2018/7/27 6:56",
+        id: -1,
+        completed: false,
+        editable: false,
+        visible: true,
+    }
 ];
 
 export default function todos(state = todoState, action) {
@@ -44,13 +51,20 @@ export default function todos(state = todoState, action) {
               return item.id === action.payload.id;
           });
           todo2.editable = !todo2.editable;
+
           todo2.text = action.todoContent;
 
           return newState3;
           break;
 
       case "CHANGE_ROUTER":
-          window.location = '/detail'
+          //debugger;
+            window.location = '/detail';
+          const newState4 = [...state];
+          const filterDetailState = newState4.filter(item => {
+              return item.id === action.payload.id;
+          });
+          return filterDetailState;
           break;
 
     default:

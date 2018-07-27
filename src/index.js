@@ -6,24 +6,14 @@ import registerServiceWorker from './registerServiceWorker';
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import reducer from './reducers'
-import TodoList from './containers/todoList';
-import UserList from './containers/userList';
 import TodoDetailerList from './containers/todoDetailerList';
 
 import {
     BrowserRouter as Router,
     Route,
-    Link
 } from 'react-router-dom'
 
-
-const store = createStore(reducer)
-
-// ReactDOM.render(
-//     <Provider store={store}>
-//         <App />
-//     </Provider>, document.getElementById('root'));
-// registerServiceWorker();
+const store = createStore(reducer);
 
 ReactDOM.render(
     <Provider store={store}>

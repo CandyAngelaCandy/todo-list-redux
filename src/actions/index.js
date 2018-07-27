@@ -46,10 +46,10 @@ export const updateTodo = (todoItem,todoContent) => {
     };
 };
 
-export const changeRouter = (targetVal) =>{
+export const changeRouter = (todoItem) =>{
    return{
      type:'CHANGE_ROUTER',
+     payload: todoItem,
      routerUrl:"./about",
-     targetVal:targetVal
    }
 }
