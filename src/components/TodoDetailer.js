@@ -10,24 +10,22 @@ class TodoDetailer extends Component {
     return (
       <div className="col-md-6 offset-md-3 mt-2">
         <h1>detail todo</h1>
-
-          <table className="table mt-5 App">
-              <thead>
+        <table className="table mt-5 App">
+          <thead>
+            <tr>
+              <th>事情</th>
+              <th>创建时间</th>
+            </tr>
+            <tbody>
               <tr>
-                  <th>事情</th>
-                  <th>创建时间</th>
+                <td width="50%">{this.props.todoList[0].text}</td>
+                <td width="50%">{this.props.todoList[0].time}</td>
               </tr>
-              <tbody>
-              <tr>
-                  <td width="50%">{this.props.todoList[0].text}</td>
-                  <td width="50%">{this.props.todoList[0].time}</td>
-              </tr>
-              </tbody>
-              </thead>
-          </table>
+            </tbody>
+          </thead>
+        </table>
       </div>
     );
-
   }
 }
 

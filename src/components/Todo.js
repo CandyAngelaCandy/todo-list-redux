@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import {Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Todo extends PureComponent {
   render() {
@@ -42,7 +42,7 @@ class Todo extends PureComponent {
             </button>
           </div>
         </div>
-          <div className="mt-5">
+        <div className="mt-5">
           {this.props.todoList.map(todoItem => {
             return (
               <div key={todoItem.id}>

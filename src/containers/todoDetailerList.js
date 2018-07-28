@@ -3,7 +3,6 @@ import TodoDetailer from '../components/TodoDetailer';
 import { selectTodoByItem } from '../actions/index';
 
 const mapStateToProps = state => {
-  console.log('===', state.todoList);
   return {
     todoList: state.todoList
   };

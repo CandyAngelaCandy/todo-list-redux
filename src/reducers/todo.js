@@ -26,10 +26,8 @@ export default function todos(state = todoState, action) {
       break;
 
     case 'FILTER_TODO':
-      // debugger;
-      const newState1 = [...state];
-
-      const filterState = newState1.filter(item => {
+      const newStateFilter = [...state];
+      const filterState = newStateFilter.filter(item => {
         return item.text.includes(action.filterValue);
       });
 
@@ -37,25 +35,25 @@ export default function todos(state = todoState, action) {
       break;
 
     case 'EDIT_TODO':
-      const newState2 = [...state];
-      const todo1 = newState2.find(item => {
+      const newStateEdit = [...state];
+      const editTodo = newStateEdit.find(item => {
         return item.id === action.payload.id;
       });
-      todo1.editable = !todo1.editable;
-      console.log('innerText', todo1.text);
-      return newState2;
+      editTodo.editable = !editTodo.editable;
+      console.log('innerText', editTodo.text);
+      return newStateEdit;
       break;
 
     case 'UPDATE_TODO':
-      const newState3 = [...state];
-      const todo2 = newState3.find(item => {
+      const newStateUpdate = [...state];
+      const upDateTodo = newStateUpdate.find(item => {
         return item.id === action.payload.id;
       });
-      todo2.editable = !todo2.editable;
+      upDateTodo.editable = !upDateTodo.editable;
 
-      todo2.text = action.todoContent;
+      upDateTodo.text = action.todoContent;
 
-      return newState3;
+      return newStateUpdate;
       break;
 
     case 'SELECT_TODO':
@@ -65,7 +63,6 @@ export default function todos(state = todoState, action) {
       const selectItem = selectState.filter(item => {
         return item.id === action.id;
       });
-      //debugger
       console.log(selectItem);
 
       return selectItem;

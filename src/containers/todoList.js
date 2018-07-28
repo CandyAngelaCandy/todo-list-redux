@@ -9,7 +9,6 @@ import {
 } from '../actions/index';
 
 const mapStateToProps = state => {
-  //console.log('===', state.todoList);
   return {
     todoList: state.todoList
   };
