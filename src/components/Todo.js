@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import {Link } from 'react-router-dom';
 
 class Todo extends PureComponent {
   render() {
@@ -7,34 +7,45 @@ class Todo extends PureComponent {
       <div>
         <div className="header">
           <h1>todos</h1>
-          <input
-            type="text"
-            ref={el => {
-              this.filterInput = el;
-            }}
-            onBlur={() => {
-              this.props.filterTodo(this.filterInput.value);
-            }}
-            placeholder="filter todo item"
-          />
-          <input
-            type="text"
-            ref={el => {
-              this.input = el;
-            }}
-          />
-          <button
-            onClick={() => {
-              this.props.addTodo(this.input.value);
-            }}
-          >
-            add
-          </button>
+          <div className="row input-group mb-3">
+            <input
+              type="text"
+              ref={el => {
+                this.filterInput = el;
+              }}
+              placeholder="filter todo item"
+            />
+            <button
+              className="btn btn-info rounded-0"
+              onClick={() => {
+                this.props.filterTodo(this.filterInput.value);
+              }}
+            >
+              search
+            </button>
+          </div>
+          <div className="row input-group mb-3">
+            <input
+              type="text"
+              ref={el => {
+                this.input = el;
+              }}
+              placeholder="add todo item"
+            />
+            <button
+              className="btn btn-info rounded-0"
+              onClick={() => {
+                this.props.addTodo(this.input.value);
+              }}
+            >
+              add
+            </button>
+          </div>
         </div>
-        <ul>
+          <div className="mt-5">
           {this.props.todoList.map(todoItem => {
             return (
-              <li key={todoItem.id}>
+              <div key={todoItem.id}>
                 <input
                   type="checkbox"
                   onChange={() => {
@@ -66,10 +77,10 @@ class Todo extends PureComponent {
                     </span>
                   </Link>
                 )}
-              </li>
+              </div>
             );
           })}
-        </ul>
+        </div>
       </div>
     );
   }

@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
 import TodoDetailer from '../components/TodoDetailer';
-import {
-    selectTodoByItem
-} from '../actions/index';
+import { selectTodoByItem } from '../actions/index';
 
 const mapStateToProps = state => {
   console.log('===', state.todoList);
@@ -12,7 +10,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-    selectTodoByItem
+  selectTodoByItem
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(TodoDetailer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TodoDetailer);

@@ -3,7 +3,7 @@ import TodoList from '../containers/todoList';
 import UserList from '../containers/userList';
 
 const App = () => (
-  <div>
+  <div className="offset-md-3 col-md-6">
     <UserList />
     <TodoList />
   </div>

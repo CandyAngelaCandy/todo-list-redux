@@ -6,7 +6,7 @@ const todoState = [
     completed: false,
     editable: false,
     visible: true,
-    time:new Date().toUTCString()
+    time: new Date().toUTCString()
   }
 ];
 
@@ -30,7 +30,7 @@ export default function todos(state = todoState, action) {
       const newState1 = [...state];
 
       const filterState = newState1.filter(item => {
-        return item.text === action.filterValue;
+        return item.text.includes(action.filterValue);
       });
 
       return filterState;
@@ -58,18 +58,18 @@ export default function todos(state = todoState, action) {
       return newState3;
       break;
 
-      case 'SELECT_TODO':
-        console.log("select");
+    case 'SELECT_TODO':
+      console.log('select');
 
-          const selectState = [...state];
-          const selectItem = selectState.filter(item => {
-              return item.id === action.id;
-          });
-          //debugger
-          console.log(selectItem);
+      const selectState = [...state];
+      const selectItem = selectState.filter(item => {
+        return item.id === action.id;
+      });
+      //debugger
+      console.log(selectItem);
 
-         return selectItem;
-         break;
+      return selectItem;
+      break;
 
     default:
       return state;

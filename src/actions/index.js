@@ -12,7 +12,7 @@ export const addTodo = text => {
       completed: false,
       editable: false,
       visible: true,
-      time:new Date().toUTCString()
+      time: new Date().toUTCString()
     }
   };
 };
@@ -46,10 +46,9 @@ export const updateTodo = (todoItem, todoContent) => {
   };
 };
 
-export const selectTodoByItem = (id) => {
+export const selectTodoByItem = id => {
   return {
-    type:'SELECT_TODO',
-    id:id
-  }
-}
-
+    type: 'SELECT_TODO',
+    id: id
+  };
+};

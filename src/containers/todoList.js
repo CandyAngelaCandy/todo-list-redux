@@ -20,7 +20,7 @@ const mapDispatchToProps = {
   toogleTodo,
   filterTodo,
   editTodo,
-  updateTodo,
+  updateTodo
 };
 
 export default connect(
