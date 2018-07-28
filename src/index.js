@@ -19,8 +19,8 @@ ReactDOM.render(
     <Provider store={store}>
         <Router>
             <div>
-                <Route exact path="/" component={()=><App />}/>
-                <Route path="/detail" component={()=><TodoDetailerList />}/>
+                <Route exact path="/" component={App}/>
+                <Route path="/detail/:id" component={TodoDetailerList}/>
             </div>
         </Router>
     </Provider>, document.getElementById('root'));

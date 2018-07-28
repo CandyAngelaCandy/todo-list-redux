@@ -4,7 +4,7 @@ class UserInfo extends Component {
   render() {
     return (
       <div>
-        <span>{this.props.userInfo["name"]}</span>
+        <span>{this.props.userInfo['name']}</span>
       </div>
     );
   }

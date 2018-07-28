@@ -6,7 +6,7 @@ import todoDetailer from './todoDetailer';
 const rootReducer = combineReducers({
   todoList: todoInfo,
   userInfo,
-    todoDetailer,todoDetailer
+  todoDetailer,
 });
 
 export default rootReducer;

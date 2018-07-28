@@ -1,12 +1,13 @@
 const todoState = [
-    {
-        text: "123456",
-        time:"2018/7/27 6:56",
-        id: -1,
-        completed: false,
-        editable: false,
-        visible: true,
-    }
+  {
+    text: '123456',
+    time: '2018/7/27 6:56',
+    id: -1,
+    completed: false,
+    editable: false,
+    visible: true,
+    time:new Date().toUTCString()
+  }
 ];
 
 export default function todos(state = todoState, action) {
@@ -41,31 +42,34 @@ export default function todos(state = todoState, action) {
         return item.id === action.payload.id;
       });
       todo1.editable = !todo1.editable;
-      console.log("innerText",todo1.text);
+      console.log('innerText', todo1.text);
       return newState2;
       break;
 
-      case 'UPDATE_TODO':
-          const newState3 = [...state];
-          const todo2 = newState3.find(item => {
-              return item.id === action.payload.id;
+    case 'UPDATE_TODO':
+      const newState3 = [...state];
+      const todo2 = newState3.find(item => {
+        return item.id === action.payload.id;
+      });
+      todo2.editable = !todo2.editable;
+
+      todo2.text = action.todoContent;
+
+      return newState3;
+      break;
+
+      case 'SELECT_TODO':
+        console.log("select");
+
+          const selectState = [...state];
+          const selectItem = selectState.filter(item => {
+              return item.id === action.id;
           });
-          todo2.editable = !todo2.editable;
+          //debugger
+          console.log(selectItem);
 
-          todo2.text = action.todoContent;
-
-          return newState3;
-          break;
-
-      case "CHANGE_ROUTER":
-          //debugger;
-            window.location = '/detail';
-          const newState4 = [...state];
-          const filterDetailState = newState4.filter(item => {
-              return item.id === action.payload.id;
-          });
-          return filterDetailState;
-          break;
+         return selectItem;
+         break;
 
     default:
       return state;

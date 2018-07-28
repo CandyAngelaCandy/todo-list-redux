@@ -1,9 +1,5 @@
 import React, { PureComponent } from 'react';
-import {
-    BrowserRouter as Router,
-    Route,
-    Link
-} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class Todo extends PureComponent {
   render() {
@@ -19,7 +15,6 @@ class Todo extends PureComponent {
             onBlur={() => {
               this.props.filterTodo(this.filterInput.value);
             }}
-
             placeholder="filter todo item"
           />
           <input
@@ -51,25 +46,25 @@ class Todo extends PureComponent {
                     <span>{todoItem.text}</span>
                   </del>
                 ) : (
-                  <span
-                    contentEditable={todoItem.editable}
-                    onDoubleClick={() => {
-                      this.props.editTodo(todoItem);
-                    }}
-                    onBlur={
-                        () => {
-                            this.props.updateTodo(todoItem,this.todoContent.innerText);
-                        }
-                    }
-                    ref={el => {
+                  <Link to={`/detail/${todoItem.id}`}>
+                    <span
+                      contentEditable={todoItem.editable}
+                      onDoubleClick={() => {
+                        this.props.editTodo(todoItem);
+                      }}
+                      onBlur={() => {
+                        this.props.updateTodo(
+                          todoItem,
+                          this.todoContent.innerText
+                        );
+                      }}
+                      ref={el => {
                         this.todoContent = el;
-                    }}
-                    onClick={() => {
-                        this.props.changeRouter(todoItem);
-                    }}
-                  >
-                    {todoItem.text}
-                  </span>
+                      }}
+                    >
+                      {todoItem.text}
+                    </span>
+                  </Link>
                 )}
               </li>
             );

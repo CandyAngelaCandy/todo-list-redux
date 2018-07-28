@@ -12,7 +12,7 @@ export const addTodo = text => {
       completed: false,
       editable: false,
       visible: true,
-      routerUrl:"./"
+      time:new Date().toUTCString()
     }
   };
 };
@@ -31,25 +31,25 @@ export const filterTodo = filterValue => {
   };
 };
 
-export const editTodo = (todoItem) => {
+export const editTodo = todoItem => {
   return {
     type: 'EDIT_TODO',
-    payload: todoItem,
+    payload: todoItem
   };
 };
 
-export const updateTodo = (todoItem,todoContent) => {
-    return {
-        type: 'UPDATE_TODO',
-        payload: todoItem,
-        todoContent:todoContent
-    };
+export const updateTodo = (todoItem, todoContent) => {
+  return {
+    type: 'UPDATE_TODO',
+    payload: todoItem,
+    todoContent: todoContent
+  };
 };
 
-export const changeRouter = (todoItem) =>{
-   return{
-     type:'CHANGE_ROUTER',
-     payload: todoItem,
-     routerUrl:"./about",
-   }
+export const selectTodoByItem = (id) => {
+  return {
+    type:'SELECT_TODO',
+    id:id
+  }
 }
+

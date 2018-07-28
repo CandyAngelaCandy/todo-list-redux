@@ -1,5 +1,5 @@
 const userInfoState = {
-    name: 'react'
+  name: 'react'
 };
 
 export default function user(state = userInfoState, action) {
