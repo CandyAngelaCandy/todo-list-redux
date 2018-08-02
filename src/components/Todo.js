@@ -2,6 +2,19 @@ import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
 class Todo extends PureComponent {
+  componentDidMount() {
+      //console.log("123");
+      fetch('/api/todolist')
+          .then(function(response) {
+              console.log(response,"response")
+              return response.json();
+          })
+          .then((myJson) => {
+              //console.log(this.props);
+              this.props.getList(myJson);
+          });
+  }
+
   render() {
     return (
       <div>

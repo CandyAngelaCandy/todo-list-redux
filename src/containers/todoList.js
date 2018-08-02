@@ -5,7 +5,8 @@ import {
   toogleTodo,
   filterTodo,
   editTodo,
-  updateTodo
+  updateTodo,
+  getList
 } from '../actions/index';
 
 const mapStateToProps = state => {
@@ -19,7 +20,8 @@ const mapDispatchToProps = {
   toogleTodo,
   filterTodo,
   editTodo,
-  updateTodo
+  updateTodo,
+  getList
 };
 
 export default connect(

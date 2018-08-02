@@ -3,11 +3,11 @@ const uuid = () => {
   return id++;
 };
 
-export const addTodo = text => {
+export const addTodo = content => {
   return {
     type: 'ADD_TODO',
     payload: {
-      text: text,
+      text: content,
       id: uuid(),
       completed: false,
       editable: false,
@@ -50,5 +50,12 @@ export const selectTodoByItem = id => {
   return {
     type: 'SELECT_TODO',
     id: id
+  };
+};
+
+export const getList = (myJson) => {
+  return {
+    type: 'GET_LIST_FROM_SERVER',
+      myJson:myJson
   };
 };
