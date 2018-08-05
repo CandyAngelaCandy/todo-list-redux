@@ -59,3 +59,49 @@ export const getList = (myJson) => {
       myJson:myJson
   };
 };
+
+export const getTodos = (todoList) => {
+  return {
+      type: 'GOT_TODOS',
+      todoList
+  }
+}
+
+export const getTodoListFromServer = () => dispatch =>{
+    return fetch('/api/todolist')
+        .then(response => {
+            console.log(response);
+            return response.json();
+        })
+        .then(todoList => {
+            return dispatch({
+                type: 'GOT_TODOS',
+                todoList
+            });
+        });
+}
+
+export const registerUser = (username, password) => dispatch => {
+    console.log("register");
+    fetch('/api/users', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: username,
+            password: password
+        })
+    })
+        .then(response => {
+            console.log(response);
+            return response.text();
+        })
+        .then(data => {
+            alert("register success");
+            console.log("token",data);
+            //跳到登录页面
+            //browserHistory.push('/login');
+        });
+};
+

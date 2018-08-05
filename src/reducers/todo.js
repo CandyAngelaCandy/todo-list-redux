@@ -69,6 +69,7 @@ export default function todos(state = todoState, action) {
       break;
 
     case 'GET_LIST_FROM_SERVER':
+
       // const todoListFromServer = fetch('http://localhost/api/todo')
       //   .then(data => data.json())
       //   .then(list => {
