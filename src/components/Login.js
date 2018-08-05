@@ -1,9 +1,9 @@
 import React, {PureComponent} from 'react';
-import {registerUser} from '../actions/index';
-import {connect} from 'react-redux';
+import {LoginUser} from "../actions/index";
+import {connect} from "react-redux";
 import { Link } from 'react-router-dom';
 
-class Register extends PureComponent {
+class Login extends PureComponent {
 
     render() {
         return (
@@ -25,17 +25,17 @@ class Register extends PureComponent {
                                }}
                         />
                     </div>
-                    <Link to={`/login`}>
+                    <Link to={`/`}>
                         <button
                             className="btn btn-info rounded-0"
                             onClick={
                                 () => {
-                                    this.props.registerUser(this.usernameInput.value,
+                                    this.props.LoginUser(this.usernameInput.value,
                                         this.passwordInput.value);
                                 }
                             }
                         >
-                            register
+                            login
                         </button>
                     </Link>
                 </div>
@@ -48,9 +48,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-    registerUser
+    LoginUser
 };
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Register);
+)(Login);

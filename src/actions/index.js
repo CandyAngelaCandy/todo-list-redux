@@ -12,7 +12,8 @@ export const addTodo = content => {
       completed: false,
       editable: false,
       visible: true,
-      time: new Date().toUTCString()
+      time: new Date().toUTCString(),
+      taskItems:[]
     }
   };
 };
@@ -61,19 +62,32 @@ export const getList = (myJson) => {
 };
 
 export const getTodos = (todoList) => {
+
   return {
       type: 'GOT_TODOS',
       todoList
   }
 }
 
+
 export const getTodoListFromServer = () => dispatch =>{
-    return fetch('/api/todolist')
+
+    console.log("token request");
+    const token = localStorage.getItem('token');
+
+    return fetch('/api/todolist',{
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    })
         .then(response => {
             console.log(response);
             return response.json();
         })
         .then(todoList => {
+            console.log("todoList in userId"+todoList);
             return dispatch({
                 type: 'GOT_TODOS',
                 todoList
@@ -104,4 +118,30 @@ export const registerUser = (username, password) => dispatch => {
             //browserHistory.push('/login');
         });
 };
+
+export const LoginUser = (username, password) => dispatch => {
+    console.log("login");
+
+    fetch('/api/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: username,
+            password: password
+        })
+    })
+        .then(response => {
+            console.log(response);
+            return response.text();
+        })
+        .then(data => {
+
+            alert("login success");
+            console.log("token","eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjF9.073qFLbDRVpRL4h9jK77-tbpEDmAqy5Mf-2r7ssaga1jol1Rm9NtFTDnw7PDxnuTNoBrHrGlJPdlSVBhzIkpjw");
+
+            localStorage.setItem("token","eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjF9.073qFLbDRVpRL4h9jK77-tbpEDmAqy5Mf-2r7ssaga1jol1Rm9NtFTDnw7PDxnuTNoBrHrGlJPdlSVBhzIkpjw");
+        });
+}
 

@@ -6,7 +6,8 @@ const todoState = [
     completed: false,
     editable: false,
     visible: true,
-    time: new Date().toUTCString()
+    time: new Date().toUTCString(),
+    taskItems:[]
   }
 ];
 
@@ -78,6 +79,10 @@ export default function todos(state = todoState, action) {
       // debugger;
       console.log("----",action.myJson);
       return [...action.myJson];
+
+      case 'GOT_TODOS':
+          console.log("user todoList ---",action.todoList);
+          return [...action.todoList];
 
     default:
       return state;

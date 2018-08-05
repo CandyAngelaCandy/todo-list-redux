@@ -6,7 +6,8 @@ import {
   filterTodo,
   editTodo,
   updateTodo,
-  getList
+  getList,
+  getTodoListFromServer
 } from '../actions/index';
 
 const mapStateToProps = state => {
@@ -21,7 +22,8 @@ const mapDispatchToProps = {
   filterTodo,
   editTodo,
   updateTodo,
-  getList
+  getList,
+  getTodoListFromServer
 };
 
 export default connect(

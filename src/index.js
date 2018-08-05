@@ -9,6 +9,7 @@ import {Provider} from 'react-redux';
 import reducer from './reducers';
 import TodoDetailerList from './containers/todoDetailerList';
 import Register from './components/Register';
+import Login from './components/Login';
 
 import {
     BrowserRouter as Router,
@@ -24,6 +25,7 @@ ReactDOM.render(
                 <Route exact path="/" component={App}/>
                 <Route path="/detail/:id" component={TodoDetailerList}/>
                 <Route path="/register" component={Register}/>
+                <Route path="/login" component={Login}/>
             </div>
         </Router>
     </Provider>, document.getElementById('root'));
