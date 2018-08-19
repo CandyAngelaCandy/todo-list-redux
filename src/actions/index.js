@@ -139,7 +139,8 @@ export const LoginUser = (username, password) => dispatch => {
         .then(data => {
 
             alert("login success");
-            console.log("token","eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjF9.073qFLbDRVpRL4h9jK77-tbpEDmAqy5Mf-2r7ssaga1jol1Rm9NtFTDnw7PDxnuTNoBrHrGlJPdlSVBhzIkpjw");
+            console.log("登录的token：",data);
+            // console.log("token","eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjF9.073qFLbDRVpRL4h9jK77-tbpEDmAqy5Mf-2r7ssaga1jol1Rm9NtFTDnw7PDxnuTNoBrHrGlJPdlSVBhzIkpjw");
 
             localStorage.setItem("token","eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjF9.073qFLbDRVpRL4h9jK77-tbpEDmAqy5Mf-2r7ssaga1jol1Rm9NtFTDnw7PDxnuTNoBrHrGlJPdlSVBhzIkpjw");
         });
