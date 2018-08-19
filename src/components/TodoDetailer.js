@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 class TodoDetailer extends Component {
   componentDidMount() {
-    const id = this.props.match.params.id;
+    //debugger;
+    const id = this.props.location.pathname.substring(8);
     this.props.selectTodoByItem(parseInt(id, 10));
   }
 

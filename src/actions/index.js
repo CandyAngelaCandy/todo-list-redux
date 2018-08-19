@@ -1,21 +1,48 @@
+import {browserHistory } from 'react-router';
+
 let id = 0;
 const uuid = () => {
   return id++;
 };
 
-export const addTodo = content => {
-  return {
-    type: 'ADD_TODO',
-    payload: {
-      text: content,
-      id: uuid(),
-      completed: false,
-      editable: false,
-      visible: true,
-      time: new Date().toUTCString(),
-      taskItems:[]
-    }
-  };
+// export const addTodo = content => {
+//   return {
+//     type: 'ADD_TODO',
+//     payload: {
+//       text: content,
+//       id: uuid(),
+//       completed: false,
+//       editable: false,
+//       visible: true,
+//       time: new Date().toUTCString(),
+//       taskItems:[]
+//     }
+//   };
+// };
+
+export const addTodo = (content) => dispatch => {
+    fetch('/api/todos', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem('token')
+        },
+        body: JSON.stringify({
+            text: content,
+            id: uuid(),
+            completed: false,
+            editable: false,
+            visible: true,
+            time: new Date().toUTCString(),
+            taskItems:[]
+        })
+    })
+    .then(response => {
+            return response.text();
+    })
+    .then(data => {
+            getTodosFromBack(dispatch);
+    });
 };
 
 export const toogleTodo = todoItem => {
@@ -117,6 +144,7 @@ export const registerUser = (username, password) => dispatch => {
             }else{
                 alert("registration succeed , please login");
             }
+            browserHistory.push('/login');
 
         });
 };
@@ -140,7 +168,7 @@ export const LoginUser = (username, password) => dispatch => {
             //alert("login success");
             //console.log("---返回的数据",typeof data);
             //console.log(typeof JSON.parse(data).status);
-            debugger;
+            //debugger;
             if(data.indexOf("status")!=-1){
                 alert("username or password error, login failed");
             }else{
@@ -149,6 +177,7 @@ export const LoginUser = (username, password) => dispatch => {
                 localStorage.setItem("token",data);
 
                 //跳转到todo页面
+                browserHistory.push('/');
             }
         });
 }

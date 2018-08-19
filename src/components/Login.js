@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react';
 import {registerUser,LoginUser} from "../actions/index";
 import {connect} from "react-redux";
-import { Link } from 'react-router-dom';
 
 class Login extends PureComponent {
 

@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {Link} from 'react-router-dom';
+import {Link} from 'react-router';
 
 class Todo extends PureComponent {
     componentDidMount() {
@@ -74,7 +74,7 @@ class Todo extends PureComponent {
                                         <span>{todoItem.text}</span>
                                     </del>
                                 ) : (
-                                    <Link to={`/detail/${todoItem.id}`}>
+                                    <Link to={{ pathname: `/detail/${todoItem.id}`, id: todoItem.id }}>
                     <span
                         contentEditable={todoItem.editable}
                         onDoubleClick={() => {

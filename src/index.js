@@ -6,26 +6,23 @@ import registerServiceWorker from './registerServiceWorker';
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
-import reducer from './reducers';
+import rootReducer from './reducers/index';
 import TodoDetailerList from './containers/todoDetailerList';
-import Register from './components/Register';
 import Login from './components/Login';
+import { Router, Route, browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 
-import {
-    BrowserRouter as Router,
-    Route,
-} from 'react-router-dom'
-
-const store = createStore(reducer,applyMiddleware(thunk));
+const store = createStore(rootReducer, applyMiddleware(thunk));
+const history = syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router>
-            <div>
-                <Route exact path="/" component={App}/>
-                <Route path="/detail/:id" component={TodoDetailerList}/>
-                <Route path="/login" component={Login}/>
-            </div>
+        <Router history={history}>
+            <Route exact path="/" component={App}/>
+            <Route path="/detail/:id" component={TodoDetailerList}/>
+            <Route path="/login" component={Login}/>
         </Router>
-    </Provider>, document.getElementById('root'));
+    </Provider>,
+    document.getElementById('root')
+);
 registerServiceWorker();
