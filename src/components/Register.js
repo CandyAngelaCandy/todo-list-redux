@@ -7,17 +7,18 @@ class Register extends PureComponent {
 
     render() {
         return (
-            <div id="root">
+            <div id="root" class="offset-md-3 col-md-6">
+                <h1>todos</h1>
                 <div className="header">
-                    <div>
-                        <span>用户名</span>
+                    <div class="row input-group mb-3">
+                        <span class="row mb-3">用户名</span>
                         <input type="text" placeholder="please input username"
                                ref={el => {
                                    this.usernameInput = el;
                                }}
                         />
                     </div>
-                    <div>
+                    <div class="row input-group mb-3">
                         <label>密码</label>
                         <input type="password" placeholder="please input password"
                                ref={el => {
@@ -41,6 +42,7 @@ class Register extends PureComponent {
                 </div>
             </div>
         );
+
     }
 }
 

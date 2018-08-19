@@ -24,7 +24,6 @@ ReactDOM.render(
             <div>
                 <Route exact path="/" component={App}/>
                 <Route path="/detail/:id" component={TodoDetailerList}/>
-                <Route path="/register" component={Register}/>
                 <Route path="/login" component={Login}/>
             </div>
         </Router>

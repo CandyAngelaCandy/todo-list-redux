@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {LoginUser} from "../actions/index";
+import {registerUser,LoginUser} from "../actions/index";
 import {connect} from "react-redux";
 import { Link } from 'react-router-dom';
 
@@ -7,27 +7,42 @@ class Login extends PureComponent {
 
     render() {
         return (
-            <div id="root">
+            <div id="root" class="offset-md-3 col-md-6">
+                <h1>todos</h1>
                 <div className="header">
-                    <div>
-                        <span>用户名</span>
-                        <input type="text" placeholder="please input username"
-                               ref={el => {
-                                   this.usernameInput = el;
-                               }}
-                        />
+                    <div className="form-group row">
+                        <div>用户名</div>
+                        <div className="col-sm-10">
+                            <input type="text" placeholder="please input username"
+                                   ref={el => {
+                                       this.usernameInput = el;
+                                   }}
+                            />
+                        </div>
                     </div>
-                    <div>
-                        <label>密码</label>
-                        <input type="password" placeholder="please input password"
-                               ref={el => {
-                                   this.passwordInput = el;
-                               }}
-                        />
+                    <div className="form-group row">
+                        <div>密码</div>
+                        <div className="col-sm-10">
+                            <input type="password" placeholder="please input password"
+                                   ref={el => {
+                                       this.passwordInput = el;
+                                   }}
+                            />
+                        </div>
                     </div>
-                    <Link to={`/`}>
-                        <button
-                            className="btn btn-info rounded-0"
+                    <button
+                        className="btn btn-info rounded-0"
+                        onClick={
+                            () => {
+                                this.props.registerUser(this.usernameInput.value,
+                                    this.passwordInput.value);
+                            }
+                        }
+                    >
+                        register
+                    </button>
+                    <button
+                            className="offset-md-1 btn btn-info rounded-0"
                             onClick={
                                 () => {
                                     this.props.LoginUser(this.usernameInput.value,
@@ -35,9 +50,8 @@ class Login extends PureComponent {
                                 }
                             }
                         >
-                            login
-                        </button>
-                    </Link>
+                        login
+                    </button>
                 </div>
             </div>
         );
@@ -45,9 +59,11 @@ class Login extends PureComponent {
 }
 
 const mapStateToProps = state => {
+
 };
 
 const mapDispatchToProps = {
+    registerUser,
     LoginUser
 };
 export default connect(

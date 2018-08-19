@@ -96,7 +96,6 @@ export const getTodoListFromServer = () => dispatch =>{
 }
 
 export const registerUser = (username, password) => dispatch => {
-    console.log("register");
     fetch('/api/users', {
         method: 'POST',
         headers: {
@@ -108,20 +107,21 @@ export const registerUser = (username, password) => dispatch => {
         })
     })
         .then(response => {
-            console.log(response);
-            return response.text();
+            //console.log("后台的response",response.status);
+            return response.status;
         })
-        .then(data => {
-            alert("register success");
-            console.log("token",data);
-            //跳到登录页面
-            //browserHistory.push('/login');
+        .then(responseStatus => {
+            console.log("返回状态码"+responseStatus);
+            if(responseStatus == 500){
+                alert(" registration failed , please retry");
+            }else{
+                alert("registration succeed , please login");
+            }
+
         });
 };
 
 export const LoginUser = (username, password) => dispatch => {
-    console.log("login");
-
     fetch('/api/login', {
         method: 'POST',
         headers: {
@@ -133,16 +133,23 @@ export const LoginUser = (username, password) => dispatch => {
         })
     })
         .then(response => {
-            console.log(response);
             return response.text();
         })
         .then(data => {
 
-            alert("login success");
-            console.log("登录的token：",data);
-            // console.log("token","eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjF9.073qFLbDRVpRL4h9jK77-tbpEDmAqy5Mf-2r7ssaga1jol1Rm9NtFTDnw7PDxnuTNoBrHrGlJPdlSVBhzIkpjw");
+            //alert("login success");
+            //console.log("---返回的数据",typeof data);
+            //console.log(typeof JSON.parse(data).status);
+            debugger;
+            if(data.indexOf("status")!=-1){
+                alert("username or password error, login failed");
+            }else{
+                //console.log("登录的token：",data);
+                alert("login succeed");
+                localStorage.setItem("token",data);
 
-            localStorage.setItem("token","eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjF9.073qFLbDRVpRL4h9jK77-tbpEDmAqy5Mf-2r7ssaga1jol1Rm9NtFTDnw7PDxnuTNoBrHrGlJPdlSVBhzIkpjw");
+                //跳转到todo页面
+            }
         });
 }
 
