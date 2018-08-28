@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import TodoDetailer from '../components/TodoDetailer';
-import { selectTodoByItem } from '../actions/index';
+import { selectTodoByItem, getTodoById} from '../actions/index';
 
 const mapStateToProps = state => {
   return {
@@ -9,7 +9,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  selectTodoByItem
+  selectTodoByItem,
+  getTodoById
 };
 
 export default connect(

@@ -1,0 +1,91 @@
+version: "3"
+
+networks:
+  todo:
+
+services:
+  mysql:
+    image: coney/mysql:5
+    deploy:
+      replicas: 1
+      restart_policy:
+        delay: 10s
+    networks:
+      todo:
+        aliases:
+          - mysql
+    ports:
+      - "3306:3306"
+  config-server:
+    image: huangyanyan/config-server:1
+    networks:
+      todo:
+        aliases:
+          - config-server
+    ports:
+      - "8099:8099"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+  gateway:
+    image: huangyanyan/gateway:1
+    depends_on:
+      - config-server
+    networks:
+      todo:
+        aliases:
+          - gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+  user-service:
+    image: huangyanyan/user-service:1
+    deploy:
+      replicas: 1
+      restart_policy:
+        delay: 10s
+    depends_on:
+      - mysql
+      - config-server
+      - gateway
+    networks:
+      todo:
+        aliases:
+          - user-service
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+  todo-service:
+    image: huangyanyan/todo-service:1
+    deploy:
+      replicas: 1
+      restart_policy:
+        delay: 10s
+    depends_on:
+      - mysql
+      - config-server
+      - gateway
+    networks:
+      todo:
+        aliases:
+          - todo-service
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+#  todo-list-redux:
+#    image: huangyanyan/todo-list-redux:1
+#    depends_on:
+#      - mysql
+#      - config-server
+#      - gateway
+#      - todo-service
+#      - user-service
+#    networks:
+#      todo:
+#        aliases:
+#          - todo-list-redux
+#    ports:
+#      - "3000:3000"
+    

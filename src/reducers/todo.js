@@ -1,15 +1,4 @@
-const todoState = [
-  {
-    text: '123456',
-    time: '2018/7/27 6:56',
-    id: -1,
-    completed: false,
-    editable: false,
-    visible: true,
-    time: new Date().toUTCString(),
-    taskItems:[]
-  }
-];
+const todoState = [];
 
 export default function todos(state = todoState, action) {
   switch (action.type) {
@@ -70,19 +59,12 @@ export default function todos(state = todoState, action) {
       break;
 
     case 'GET_LIST_FROM_SERVER':
-
-      // const todoListFromServer = fetch('http://localhost/api/todo')
-      //   .then(data => data.json())
-      //   .then(list => {
-      //     return list;
-      //   });
-      // debugger;
-      console.log("----",action.myJson);
+      console.log('----', action.myJson);
       return [...action.myJson];
 
-      case 'GOT_TODOS':
-          console.log("user todoList ---",action.todoList);
-          return [...action.todoList];
+    case 'GOT_TODOS':
+      console.log('by id user todoList ---', action.todoList);
+      return [...action.todoList];
 
     default:
       return state;

@@ -1,58 +1,68 @@
-import React, {PureComponent} from 'react';
-import {registerUser} from '../actions/index';
-import {connect} from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { PureComponent } from 'react';
+import { registerUser } from '../actions/index';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 class Register extends PureComponent {
-
-    render() {
-        return (
-            <div id="root" class="offset-md-3 col-md-6">
-                <h1>todos</h1>
-                <div className="header">
-                    <div class="row input-group mb-3">
-                        <span class="row mb-3">用户名</span>
-                        <input type="text" placeholder="please input username"
-                               ref={el => {
-                                   this.usernameInput = el;
-                               }}
-                        />
-                    </div>
-                    <div class="row input-group mb-3">
-                        <label>密码</label>
-                        <input type="password" placeholder="please input password"
-                               ref={el => {
-                                   this.passwordInput = el;
-                               }}
-                        />
-                    </div>
-                    <Link to={`/login`}>
-                        <button
-                            className="btn btn-info rounded-0"
-                            onClick={
-                                () => {
-                                    this.props.registerUser(this.usernameInput.value,
-                                        this.passwordInput.value);
-                                }
-                            }
-                        >
-                            register
-                        </button>
-                    </Link>
-                </div>
+  render() {
+    return (
+      <div id="root" class="offset-md-3 col-md-6">
+        <h1>Todo Register</h1>
+        <div className="header">
+          <div className="form-group row">
+            <div>用户名</div>
+            <div className="col-sm-10">
+              <input
+                type="text"
+                ref={el => {
+                  this.usernameInput = el;
+                }}
+              />
             </div>
-        );
-
-    }
+          </div>
+          <div className="form-group row">
+            <div style={{ marginLeft: '6px' }}>密码</div>
+            <div className="col-sm-10">
+              <input
+                style={{ marginLeft: '10px' }}
+                type="password"
+                ref={el => {
+                  this.passwordInput = el;
+                }}
+              />
+            </div>
+          </div>
+          <button
+            className="btn-info rounded-0"
+            onClick={() => {
+              this.props.registerUser(
+                this.usernameInput.value,
+                this.passwordInput.value
+              );
+            }}
+          >
+            register
+          </button>
+          <button
+            className="offset-md-1 btn-default"
+            onClick={() => {
+              browserHistory.push('/login');
+            }}
+          >
+            login
+          </button>
+        </div>
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = state => {
-};
+const mapStateToProps = state => {};
 
 const mapDispatchToProps = {
-    registerUser
+  registerUser
 };
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Register);
