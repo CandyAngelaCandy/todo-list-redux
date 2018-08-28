@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
-import { browserHistory } from 'react-router';
-import { Modal, Button } from 'antd';
+import { hashHistory, Redirect } from 'react-router';
 
 class Todo extends PureComponent {
   componentDidMount() {
@@ -23,6 +22,11 @@ class Todo extends PureComponent {
   };
 
   render() {
+    if (
+      localStorage.token === '' || localStorage.token === undefined
+    ) {
+      hashHistory.push("/");
+    }
     return (
       <div>
         <div className="header">
@@ -78,7 +82,7 @@ class Todo extends PureComponent {
               <tr>
                 <th className="text-center">ID</th>
                 <th className="text-center">完成</th>
-                <th className="text-center">todo内容</th>
+                <th className="text-center">todo</th>
                 <th className="text-center">创建时间</th>
                 <th className="text-center">任务分解</th>
                 <th className="text-center">操作</th>
@@ -138,7 +142,8 @@ class Todo extends PureComponent {
                     <td className="text-center">
                       <button
                         onClick={() => {
-                          browserHistory.push(`/detail/${todoItem.id}`);
+                          localStorage.setItem('todoId', todoItem.id);
+                          hashHistory.push(`/todos/${todoItem.id}`);
                         }}
                       >
                         detail

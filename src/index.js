@@ -10,18 +10,18 @@ import rootReducer from './reducers/index';
 import TodoDetailerList from './containers/todoDetailerList';
 import Login from './components/Login';
 import Register from './components/Register';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(hashHistory, store);
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route exact path="/" component={App} />
-      <Route path="/detail/:id" component={TodoDetailerList} />
-      <Route path="/login" component={Login} />
+      <Route path="/todos" component={App} />
+      <Route path="/todos/:id" component={TodoDetailerList} />
+      <Route exact path="/" component={Login} />
       <Route path="/register" component={Register} />
     </Router>
   </Provider>,

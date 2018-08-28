@@ -1,15 +1,16 @@
 import React, { PureComponent } from 'react';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 
 class TodoDetailer extends PureComponent {
   constructor() {
     super();
     this.state = {
       todoList: []
-  }}
+    };
+  }
 
   componentDidMount() {
-    const id = this.props.location.pathname.substring(8);
+    const id = localStorage.getItem('todoId');
     fetch(`/api/todos/${id}`, {
       method: 'GET',
       headers: {
@@ -23,7 +24,7 @@ class TodoDetailer extends PureComponent {
       })
       .then(todoList => {
         this.setState({
-          todoList: todoList,
+          todoList: todoList
         });
       });
   }
@@ -50,7 +51,7 @@ class TodoDetailer extends PureComponent {
         <button
           className="btn btn-link"
           onClick={() => {
-            browserHistory.push('/');
+            hashHistory.push('/todos');
           }}
         >
           back to todos
@@ -59,7 +60,7 @@ class TodoDetailer extends PureComponent {
           <thead>
             <tr>
               <th className="text-center">ID</th>
-              <th className="text-center">事情</th>
+              <th className="text-center">todo</th>
               <th className="text-center">创建时间</th>
               <th className="text-center">完成情况</th>
               <th className="text-center">任务分解</th>
@@ -69,9 +70,7 @@ class TodoDetailer extends PureComponent {
             <tr>
               <td className="text-center">{todoList.id}</td>
               <td className="text-center">{todoList.text}</td>
-              <td className="text-center">
-                {this.formatDate(todoList.time)}
-              </td>
+              <td className="text-center">{this.formatDate(todoList.time)}</td>
               <td className="text-center">
                 {todoList.completed ? 'yes' : 'no'}
               </td>

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { registerUser, LoginUser } from '../actions/index';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 
 class Login extends PureComponent {
   render() {
@@ -46,7 +46,7 @@ class Login extends PureComponent {
           <button
             className="offset-md-1  btn-default rounded-0"
             onClick={() => {
-              browserHistory.push('/register');
+              hashHistory.push('/register');
             }}
           >
             register

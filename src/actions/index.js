@@ -1,4 +1,4 @@
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 
 let id = 0;
 const uuid = () => {
@@ -91,6 +91,13 @@ export const getTodos = todoList => {
   return {
     type: 'GOT_TODOS',
     todoList
+  };
+};
+
+export const getUserById = user => {
+  return {
+    type: 'GOT_USER',
+    user
   };
 };
 
@@ -206,9 +213,9 @@ export const LoginUser = (username, password) => dispatch => {
         //console.log("登录的token：",data);
         alert('login succeed');
         localStorage.setItem('token', data);
-
+        localStorage.setItem('username', username);
         //跳转到todo页面
-        browserHistory.push('/');
+        hashHistory.push('/todos');
       }
     });
 };

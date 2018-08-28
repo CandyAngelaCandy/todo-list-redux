@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
+import { hashHistory } from 'react-router';
 
 class UserInfo extends Component {
   render() {
-    return <h4 className="header">{this.props.userInfo['name']}</h4>;
+    return (
+      <div>
+        <label className="header">
+          hello {localStorage.getItem('username')}
+        </label>
+        <button
+          style={{ marginLeft: '95px' }}
+          className="btn btn-link"
+          onClick={() => {
+            hashHistory.push('/');
+            localStorage.setItem('token', '');
+          }}
+        >
+          sign out
+        </button>
+      </div>
+    );
   }
 }
 
